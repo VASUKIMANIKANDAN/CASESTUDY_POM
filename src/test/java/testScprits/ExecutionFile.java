@@ -33,7 +33,7 @@ public class ExecutionFile extends TestBase {
 	WebDriverWait wait;
 	
 	@BeforeTest
-	public void startup()
+	public void start()
 	{
 		initialize();
 	}
@@ -46,13 +46,13 @@ public class ExecutionFile extends TestBase {
 		login=new LoginPage();
 		home=new HomePage();
 		home.login.click();
-		login.login(prop.getProperty("uname"), prop.getProperty("pass"));
+		login.login(prop.getProperty("username"), prop.getProperty("password"));
 		Assert.assertEquals(home.welcome.getText(),"Welcome Vasuki5456");			
 	}
 	
 	@Test(dataProvider="data",priority=2)
 	
-	public void additem(String item)
+	public void additemtocart(String item)
 	
 	{
 		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -62,12 +62,11 @@ public class ExecutionFile extends TestBase {
 		home.search(item);
 		home.GoTOCart();
 		wait.until(ExpectedConditions.visibilityOfAllElements(cart.items));
-		boolean flag=false;
+		boolean flag;
 		for(WebElement cartslist: cart.items)
 		  {
 			  if(cartslist.getText().equalsIgnoreCase(item)) {
 			  Assert.assertEquals(cartslist.getText(), item);
-			  flag=true;
 			  }			  
 		  }
 		Assert.assertTrue(flag);	  
@@ -79,7 +78,6 @@ public class ExecutionFile extends TestBase {
 		cart=new CartPage();
 		order=new PurchasePage();
 		boolean success= cart.delete();
-		//Assert.assertTrue(success);
 	}
 	
 	@Test(priority=4)
@@ -88,17 +86,12 @@ public class ExecutionFile extends TestBase {
 		order=new PurchasePage();
 		cart=new CartPage();
 		Thread.sleep(3000);
-		cart.placeorder.click();
 		order.confirmorder();
-		
-		wait= new WebDriverWait(driver, Duration.ofSeconds(30));
-
-		
 	}
 	
 	 @DataProvider(name="data")
 	  public Object[][] ProListCSV() throws CsvValidationException, IOException{
-		  String path=System.getProperty("user.dir")+"//src//test//resources//testData//singledata.csv";
+		  String path=System.getProperty("user.dir")+"//src//test//resources//testData//data.csv";
 		  String[] cols;
 		  CSVReader reader = new CSVReader(new FileReader(path));
 		  ArrayList<Object> dataList=new ArrayList<Object>();
