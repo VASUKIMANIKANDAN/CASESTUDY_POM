@@ -24,9 +24,6 @@ public class HomePage extends TestBase {
 	@FindBy(id="login2")
 	public WebElement login;
 	
-	@FindBy(xpath="//a[contains(text(),'Cart')]")
-	WebElement gotocart;
-	
 	@FindBy(xpath="//li/a[text()='Welcome Vasuki5456']")
 	public WebElement welcome;
 	
@@ -41,15 +38,13 @@ public class HomePage extends TestBase {
 
 	{
 		wait= new WebDriverWait(driver, Duration.ofSeconds(30));
-		
 		home.click();
-		
 		WebElement itmchk= driver.findElement(By.linkText(itm));
 		itmchk.click();
-		 addtocart.click();
-		 wait.until(ExpectedConditions.alertIsPresent());
-		  Alert alert=driver.switchTo().alert();		  
-		  alert.accept();
+		addtocart.click();
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert=driver.switchTo().alert();		  
+		alert.accept();
 	}
 	
 	public void GoTOCart()
