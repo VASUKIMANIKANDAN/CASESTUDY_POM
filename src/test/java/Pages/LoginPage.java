@@ -30,17 +30,15 @@ public class LoginPage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void login(String user, String pass)
+	public void login(String username, String password)
 	
 	{
 		wait= new WebDriverWait(driver, Duration.ofSeconds(60));
 		
 		
 		
-		username.sendKeys(user);
-//		wait.until(ExpectedConditions.)
-		password.sendKeys(pass);
+		username.sendKeys(username);
+		password.sendKeys(password);
 		loginbtn.click();
-		//return new ();
 	}
 }
