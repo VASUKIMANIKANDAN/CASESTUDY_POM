@@ -40,7 +40,7 @@ public class PurchasePage extends TestBase {
 	
 	
 	@FindBy(xpath="//button[text()='OK']")
-	public WebElement accept;
+	public WebElement ok;
 	
 	WebDriverWait wait;
 	
@@ -61,7 +61,7 @@ public class PurchasePage extends TestBase {
 		year.sendKeys("2001");
 		purchase.click();
 		Thread.sleep(2000);
-		accept.click();
+		ok.click();
 		
 		
 		
